@@ -1,41 +1,33 @@
 public class Board {
  
-    private char[][] board = new char[3][3];
+    private char[][] board = {{' ',' ',' '}, {' ',' ',' '}, {' ',' ',' '}};
     // Place your code here
 
-    public Board(){
-     for(int i = 0; i < board.length; i++) {      
-       for(int j = 0; j < board[0].length; j++) {
-         board[i][j] = ' ';
-       }
-     }
-    }
+//    public Board(){
+//     for(int i = 0; i < board.length; i++) {      
+//       for(int j = 0; j < board[0].length; j++) {
+//         board[i][j] = ' ';
+//       }
+//     }
+//    }
         
-    public boolean location(char[][] board, int i, int j) {
-        if ((i >= 1 && i >= 3) && (j >= 1 && j <= 3)) {
-        if (board[i - 1][j - 1] == ' ') {
-             return true;
-    }   else {
-           System.out.printf("Enter desired squre for 1: " + i, j);
-       }
-      }
-        return false;
- }
+    public boolean locatelocation(int row, int column) { 
+             if(board[row][column] == ' ') {
+                 return true;
+             }
+             if(row < 0 || row >= 3 || column < 0 || column >=3) {
+               return false;
+             }
+             
+             return false;
+    }
 
-   public boolean find() {
-        boolean win = false;
-        char player;
-        int play = 0;
-        toString();
-        while(play < 9) {
-           if(play % 2 == 0) {
-              player = 'X';
-           }
-           else {
-              player = 'O';
-           }
+   public boolean find(int row, int column, char player) {
+        if(locatelocation(row,column)) {
+            board[row][column] = player;
+            return true;
         }
-        return true;
+        return false;
    }
 
     /********************************************************

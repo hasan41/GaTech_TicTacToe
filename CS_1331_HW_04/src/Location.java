@@ -8,6 +8,10 @@ public class Location {
         this.column = column;
     }
 
+    public Location(Location input) {
+     // TODO Auto-generated constructor stub
+    }
+
     /********************************************************
      *                                                      *
      *      DO NOT MODIFY CODE ABOVE THIS BOX              *

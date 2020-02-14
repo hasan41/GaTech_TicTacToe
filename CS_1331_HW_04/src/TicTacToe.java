@@ -2,66 +2,103 @@ import java.util.Scanner;
 import java.util.Random;
 
 public class TicTacToe {
+   private static final Random Random = new Random(); //Random instance variable 
+
     // Place your methods here
     public static void main(String[] args) {
-//     Scanner sc = new Scanner(System.in);
-//     Board board = new Board();
-//     int s = getNumberPlayers(sc);
-//     while(true) {
-//     if(s == 1) {
-//         playComputer(board);
-//     }
-//     else if(s == 2) {
-//         playPlayer(board);
-//     }
-//     }
+     
      Scanner sc = new Scanner(System.in);
      Board board = new Board();
-     char[][] b = new char [3][3];
+     Location location = new Location(Random.nextInt(3),Random.nextInt(3));
+     char [] b;
+     b = new char[] {'X', 'O'};
+     String [] pnumber = new String[] {"1", "2"};
+     int player = 0;
+     boolean tictacend = false;
+     int countplayer = getNumberPlayers(sc);
      char pc = 0;
-     if(getNumberPlayers(sc) == 1) {
-        playComputer(board,b,pc);
-     }
-//     int i = 0, j = 0;
-//     b.location(board, i, j);
-//     String s = b.toString();
-//     System.out.print(s);
-//     
-//     if(getNumberPlayers(sc) == 1) {
-//        playComputer(b, board, compSymbol);
-//     }
-//     else {
-//         playPlayer(b,board,userSymbol,sc);
-//     }
-     //b.toString();
-    }
-    
-    public static void playComputer(Board board, char[][] b, char pc) {
-        System.out.println(board);
-        for(int i = 0; i < b.length; i++) {
-           for(int j = 0; j < b[0].length; j++) {
-               if(b[i][j] == ' ') {
-                  b[i][j] = pc;
-                  return;
-               }
-           }
-        }
-    }
-    
-    public static void playPlayer(Board board, char[][] b, char pp, Scanner sc) {
-        String s = board.toString();
-        String player = " ";
-        System.out.println(s);
-        int row = sc.nextInt();
-        int column = sc.nextInt();
-        while(b[row][column] != ' ') {
-            getInput(player, sc);
-            row = sc.nextInt();
-            column = sc.nextInt();
+     System.out.println(board);
+     while(!tictacend) {
+        if(countplayer == 1 && player == 1) {
+          do {
+            if(countplayer == 1 && player == 1) {
+               playComputer(board,location);
+            }
+            else {
+              location = getInput(pnumber[player],sc);
+            }
+          }while(!board.find(location.getRow(),location.getColumn(),b[player]));
+          
+          System.out.println(board);
+          
+     switch(board.getGameState()) {
+     case ONGOING:
+        break;
+     case PLAYER1_WIN:
+        System.out.println("Congrats, Player 1 'X' wins! ");
+        tictacend = true;
+        break;
+     case PLAYER2_WIN:
+         if(countplayer == 1) {
+          System.out.println("Sorry, Computer won! ");
          }
-        b[row][column] = pp;
+         else if(countplayer == 2) {
+          System.out.println("Congrats, Player 2 'O' wins! ");
+         }
+         tictacend = true;
+         break;
+     case TIE:
+         System.out.println("Game is Draw");
+         tictacend = true;
+         break;
+     }
+     player = (player + 1) % 2;
+    }
+     }
     }
     
+    private static void playComputer(Board board, Location location) {
+        System.out.println(board);
+        int row  = Random.nextInt(3);
+        int column  = Random.nextInt(3);
+        System.out.println("The computer is making move... ");
+        location = new Location(row, column);
+    }
+    
+    private static void playPlayer(Board board,Scanner sc) {
+      System.out.print(board);
+      Location p1 = new Location(getInput("1", sc));
+      
+    }
+    
+//    private static Location Robot(Board board, char[][] b) {
+//     int row = 0;
+//     int column = 0;
+//     int count = 0;
+//     boolean a = true;
+//     for(row = 0; row < b.length; row++) {
+//       for(column = 0; column < b.length; column++) {
+//          if(b[row][column] == 0) {
+//             count++;
+//          }
+//          int select = (int) (Math.random() * count);
+//          count = 0;
+//          for (row = 0; row < b.length; row ++){
+//              for (column = 0; column < b.length; column ++){
+//                  if (b[row][column] == 0){
+//                      if (count == select){
+//                         b[row][column] = 2;
+//                         System.out.println("The computer is making the move...");
+//                       }
+//                      count++;
+//                      }
+//                  }
+//              }
+//          }
+//       }
+//     return null;
+//     
+//   }
 
     /********************************************************
      *                                                      *
