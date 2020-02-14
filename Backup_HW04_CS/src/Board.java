@@ -1,3 +1,4 @@
+// worked on the homework assignment alone, using only course materials.
 public class Board {
     // Place your code here
     private char[][] board = { { ' ', ' ', ' ' }, { ' ', ' ', ' ' }, { ' ', ' ', ' ' } };
