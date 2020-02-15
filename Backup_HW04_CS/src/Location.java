@@ -1,4 +1,4 @@
-
+//I worked on the homework assignment alone, using only course materials.
 public class Location {
     private int row;
     private int column;
@@ -20,11 +20,11 @@ public class Location {
 
     // create getter for row here
     public int getRow() {
-      return this.row;
+        return this.row;
     }
 
     // create getter for column here
     public int getColumn() {
-       return this.column;
+        return this.column;
     }
 }
