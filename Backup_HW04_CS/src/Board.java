@@ -1,19 +1,23 @@
 // worked on the homework assignment alone, using only course materials.
 public class Board {
     // Place your code here
-    private char[][] board = { { ' ', ' ', ' ' }, { ' ', ' ', ' ' }, { ' ', ' ', ' ' } };
+    private char[][] board = new char [3][3];
+    
+    public Board() {
+      for(int i = 0; i<board.length;i++) {
+         for(int j = 0; j < board[0].length;j++) {
+            board[i][j] = ' ';
+         }
+      }
+    }
     
     public boolean locatelocation(int row, int column) {
-//   if((board[row][column] == ' ') && (row >= 0 && row < 3 && column >= 0 && column < 3)) {
-//   return true;
-// }
-// return false;
-        if(board[row][column] == ' ') {
-          return true;
-        }
-        if(row < 0 || column >=3 || row >=3 || column < 0) {
+        if(row < 0 || column < 0 || row >= 3 || column >=3) {
           return false;
         }
+        if(board[row][column] == ' ') {
+         return true;
+       }
         return false;
     }
     
